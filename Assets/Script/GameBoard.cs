@@ -20,6 +20,11 @@ public class GameBoard : MonoBehaviour
     public int numberOfMaxResources;
 
     public GAME_MODE GameMode;
+    public int scanModeClickNumbers;
+    public int MaxScanClickNumbers;
+    public int extractNumbers;
+    public int ScanNumbrs = 6;
+    
     private void Awake()
     {
         if (instance == null)
@@ -121,14 +126,19 @@ public class GameBoard : MonoBehaviour
 
     public void ShowTilesScanMode(Vector2 vec)
 	{
-        int r = (int)vec.x;
-        int c = (int)vec.y;
-        for (int i = r - 1; i < r + 2; i++)
+       
+        if (scanModeClickNumbers > 0)
         {
-            for (int j = c - 1; j < c + 2; j++)
+            scanModeClickNumbers--;
+            int r = (int)vec.x;
+            int c = (int)vec.y;
+            for (int i = r - 1; i < r + 2; i++)
             {
-                if((j<=31 && j>=0) && (i <= 31 && i >= 0))
-                grid[i, j].GetComponent<TileScript>().ToggleTileActivation(true);
+                for (int j = c - 1; j < c + 2; j++)
+                {
+                    if ((j <= 31 && j >= 0) && (i <= 31 && i >= 0))
+                        grid[i, j].GetComponent<TileScript>().ToggleTileActivation(true);
+                }
             }
         }
     }

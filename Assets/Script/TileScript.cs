@@ -41,6 +41,7 @@ public class TileScript : MonoBehaviour, IPointerDownHandler
 	{
         if (GameBoard.Instance.GameMode == GAME_MODE.SCAN_MODE)
         {
+            
             GameBoard.Instance.ShowTilesScanMode(coordinate);
         }
 	}
