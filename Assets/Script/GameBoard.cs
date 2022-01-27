@@ -8,6 +8,7 @@ public class GameBoard : MonoBehaviour
     public static GameBoard Instance { get { return instance; } }
     private System.Random rand = new System.Random();
     public GameObject TilePrefab;
+    public Text MessageText;
 
     public GameObject[,] grid = new GameObject[32, 32];
     public List<Vector2> filledTileList = new List<Vector2>();
@@ -15,6 +16,7 @@ public class GameBoard : MonoBehaviour
     public Color MaxColor;
     public Color HalfColor;
     public Color QuarterColor;
+    public Color defaultColor;
 
     public int MaxResourceAmount;
     public int numberOfMaxResources;
@@ -24,7 +26,8 @@ public class GameBoard : MonoBehaviour
     public int MaxScanClickNumbers;
     public int extractNumbers;
     public int ScanNumbrs = 6;
-    
+    public int[] resourcesAmount=new int[12];
+    public string[] resourceNames = new string[12];
     private void Awake()
     {
         if (instance == null)
@@ -51,8 +54,11 @@ public class GameBoard : MonoBehaviour
         SetupTiles();
     }
 
-
-    private void SetupTiles()
+	private void Update()
+	{
+		
+	}
+	private void SetupTiles()
 	{
         Vector2 vec = Vector2.zero;
         int image = 0;
@@ -140,6 +146,82 @@ public class GameBoard : MonoBehaviour
                         grid[i, j].GetComponent<TileScript>().ToggleTileActivation(true);
                 }
             }
+        }
+        else
+        {
+            GameBoard.Instance.MessageText.text = "Number of Scan clicks is 0";
+
+        }
+    }
+
+    public void ChangeMode()
+	{
+        for (int r = 0; r < 32; r++)
+        {
+            for (int c = 0; c < 32; c++)
+            {
+                grid[r, c].GetComponent<TileScript>().ToggleTileActivation(false);
+            }
+        }
+    }
+
+    public void extractTiles(Vector2 vec)
+	{
+        if (extractNumbers > 0)
+        {
+            extractNumbers--;
+            int r = (int)vec.x;
+            int c = (int)vec.y;
+            for (int i = r - 2; i < r + 2; i++)
+            {
+                for (int j = c - 2; j < c + 2; j++)
+                {
+                    if ((j <= 31 && j >= 0) && (i <= 31 && i >= 0))
+                    {
+
+                        if (grid[i, j].GetComponent<TileScript>().amount == MaxResourceAmount)
+                        {
+                            resourcesAmount[(int)grid[i, j].GetComponent<TileScript>().resource] += MaxResourceAmount / 2;
+                            grid[i, j].GetComponent<TileScript>().fillTile(HalfColor, (int)grid[i, j].GetComponent<TileScript>().resource, MaxResourceAmount / 2);
+                            GameBoard.Instance.MessageText.text = "Extracted " + MaxResourceAmount / 2 + " " + resourceNames[(int)grid[i, j].GetComponent<TileScript>().resource];
+
+                        }
+                        else if (grid[i, j].GetComponent<TileScript>().amount == MaxResourceAmount / 2)
+                        {
+                            grid[i, j].GetComponent<TileScript>().fillTile(QuarterColor, (int)grid[i, j].GetComponent<TileScript>().resource, MaxResourceAmount / 4);
+                            resourcesAmount[(int)grid[i, j].GetComponent<TileScript>().resource] += MaxResourceAmount / 4;
+                            GameBoard.Instance.MessageText.text = "Extracted " + MaxResourceAmount / 4 + " " + resourceNames[(int)grid[i, j].GetComponent<TileScript>().resource];
+
+                        }
+                        else if (grid[i, j].GetComponent<TileScript>().amount == MaxResourceAmount / 4)
+                        {
+                            resourcesAmount[(int)grid[i, j].GetComponent<TileScript>().resource] += MaxResourceAmount / 4;
+                            grid[i, j].GetComponent<TileScript>().fillTile(defaultColor, -1, 0);
+                            GameBoard.Instance.MessageText.text = "Extracted " + MaxResourceAmount / 4 + " " + resourceNames[(int)grid[i, j].GetComponent<TileScript>().resource];
+                        }
+                        else
+                        {
+                            grid[i, j].GetComponent<TileScript>().fillTile(defaultColor, -1, 0);
+                            GameBoard.Instance.MessageText.text = "Extracted empty tile";
+                        }
+
+                    }
+
+                }
+            }
+            for (int i = r - 2; i < r + 2; i++)
+            {
+                for (int j = c - 2; j < c + 2; j++)
+                {
+                    if ((j <= 31 && j >= 0) && (i <= 31 && i >= 0))
+                        grid[i, j].GetComponent<TileScript>().ToggleTileActivation(true);
+                }
+            }
+        }
+        else
+		{
+            GameBoard.Instance.MessageText.text = "Number of extraction is 0";
+
         }
     }
 }

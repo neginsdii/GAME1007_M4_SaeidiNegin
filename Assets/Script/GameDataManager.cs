@@ -8,7 +8,8 @@ public class GameDataManager : MonoBehaviour
     public GameObject GamePanel;
     public GameObject GameMode;
     public Text GameStatsText;
-    public Text MessageText;
+  
+    public Text ResourceCounterText;
     private Text GameModeText;
     void Start()
     {
@@ -30,16 +31,26 @@ public class GameDataManager : MonoBehaviour
 
     public void OnGameModeClicked()
 	{
+            GameBoard.Instance.ChangeMode();
         if(GameBoard.Instance.GameMode == GAME_MODE.EXTRACT_MODE)
 		{
+            if (GameBoard.Instance.ScanNumbrs > 0)
+            {
 
-            GameBoard.Instance.GameMode = GAME_MODE.SCAN_MODE;
-            GameModeText.text = "Extract Mode";
-            GameBoard.Instance.ScanNumbrs--;
+                GameBoard.Instance.MessageText.text = "You're in scan mode";
+                GameBoard.Instance.GameMode = GAME_MODE.SCAN_MODE;
+                GameModeText.text = "Extract Mode";
+                GameBoard.Instance.ScanNumbrs--;
 
+            }
+            else
+			{
+                GameBoard.Instance.MessageText.text = "Number of Scans is 0";
+            }
         }
         else
-		{
+        {
+            GameBoard.Instance.MessageText.text = "You're in extract mode";
             GameBoard.Instance.GameMode = GAME_MODE.EXTRACT_MODE;
             GameModeText.text = "Scan Mode";
         }
@@ -49,6 +60,13 @@ public class GameDataManager : MonoBehaviour
 	{
         GameStatsText.text = "Extract Numbers: " + GameBoard.Instance.extractNumbers + "\n Scan Numbers: " + GameBoard.Instance.ScanNumbrs +
                         "\n Scan Mode Click Numbers: " + GameBoard.Instance.scanModeClickNumbers;
+        ResourceCounterText.text = "";
+        for (int i = 0; i < 12; i++)
+        {
+            ResourceCounterText.text += GameBoard.Instance.resourceNames[i] + ": \t" + GameBoard.Instance.resourcesAmount[i]+"\n";
+
+        }
+
 	}
 }
 

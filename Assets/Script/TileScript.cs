@@ -11,9 +11,10 @@ public class TileScript : MonoBehaviour, IPointerDownHandler
     public Vector2 coordinate;
     public Image tileImage;
     public Color tileColor;
-    public int amount;
-    public bool isFilled = false;
     public Sprite[] IconImages;
+    public int amount;
+    public RESOURCES resource;
+    public bool isFilled = false;
     void Start()
     {
 		icon.gameObject.SetActive(false);
@@ -30,11 +31,18 @@ public class TileScript : MonoBehaviour, IPointerDownHandler
 	{
         amount = amt;
         tileColor = color;
-        icon.sprite = IconImages[image];
-        isFilled = true;
         tileImage.color = tileColor;
 
-
+        isFilled = true;
+        if (image >= 0)
+        {
+            resource = (RESOURCES)image;
+            icon.sprite = IconImages[image];
+        }
+        else
+		{
+            icon.sprite = null;
+		}
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -43,6 +51,10 @@ public class TileScript : MonoBehaviour, IPointerDownHandler
         {
             
             GameBoard.Instance.ShowTilesScanMode(coordinate);
+        }
+        else
+		{
+            GameBoard.Instance.extractTiles(coordinate);
         }
 	}
 

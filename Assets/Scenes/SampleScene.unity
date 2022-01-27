@@ -461,7 +461,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -471,8 +471,8 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: New Text
+    m_LineSpacing: 1.5
+  m_Text: 
 --- !u!222 &235260320
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -615,7 +615,7 @@ MonoBehaviour:
   GamePanel: {fileID: 531209347}
   GameMode: {fileID: 1009253581}
   GameStatsText: {fileID: 205647592}
-  MessageText: {fileID: 1082887937}
+  ResourceCounterText: {fileID: 235260319}
 --- !u!4 &452882387
 Transform:
   m_ObjectHideFlags: 0
@@ -1142,18 +1142,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: You're in extract mode.
 --- !u!222 &1082887938
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1276,17 +1276,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TilePrefab: {fileID: 8201805814632244807, guid: bb1de5e6dffdb4240968c816e8cfaf5d, type: 3}
+  MessageText: {fileID: 1082887937}
   filledTileList: []
   MaxColor: {r: 0.735849, g: 0.0064692944, b: 0, a: 0.80784315}
   HalfColor: {r: 1, g: 0.3891403, b: 0, a: 0.7882353}
   QuarterColor: {r: 1, g: 0.7337315, b: 0, a: 0.54901963}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
   MaxResourceAmount: 200
   numberOfMaxResources: 17
   GameMode: 0
-  scanModeClickNumbers: 4
+  scanModeClickNumbers: 6
   MaxScanClickNumbers: 0
   extractNumbers: 3
   ScanNumbrs: 6
+  resourcesAmount: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  resourceNames:
+  - Apple
+  - Gem
+  - Healing Potion
+  - Magic Potion
+  - Coins
+  - Armor
+  - Shield
+  - Meat
+  - Ingots
+  - Sword
+  - Helmet
+  - Axe
 --- !u!1 &1466793603
 GameObject:
   m_ObjectHideFlags: 0
