@@ -393,7 +393,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Exit
+  m_Text: Reveal Tiles
 --- !u!222 &214787095
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -612,6 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnterGameButton: {fileID: 84077058}
+  ShowButton: {fileID: 2000766839}
   GamePanel: {fileID: 531209347}
   GameMode: {fileID: 1009253581}
   GameStatsText: {fileID: 205647592}
@@ -1287,7 +1288,7 @@ MonoBehaviour:
   GameMode: 0
   scanModeClickNumbers: 6
   MaxScanClickNumbers: 0
-  extractNumbers: 3
+  extractNumbers: 4
   ScanNumbrs: 6
   resourcesAmount: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   resourceNames:
@@ -1849,7 +1850,7 @@ GameObject:
   - component: {fileID: 2000766842}
   - component: {fileID: 2000766841}
   m_Layer: 5
-  m_Name: Exit Button
+  m_Name: ShowBoard Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -54,10 +54,6 @@ public class GameBoard : MonoBehaviour
         SetupTiles();
     }
 
-	private void Update()
-	{
-		
-	}
 	private void SetupTiles()
 	{
         Vector2 vec = Vector2.zero;
@@ -154,8 +150,27 @@ public class GameBoard : MonoBehaviour
         }
     }
 
-    public void ChangeMode()
+    public void ChangeMode(bool show)
 	{
+        for (int r = 0; r < 32; r++)
+        {
+            for (int c = 0; c < 32; c++)
+            {
+                grid[r, c].GetComponent<TileScript>().ToggleTileActivation(show);
+            }
+        }
+    }
+
+    public IEnumerator showGameBoard()
+    {
+        for (int r = 0; r < 32; r++)
+        {
+            for (int c = 0; c < 32; c++)
+            {
+                grid[r, c].GetComponent<TileScript>().ToggleTileActivation(true);
+            }
+        }
+        yield return new WaitForSeconds(2.0f);
         for (int r = 0; r < 32; r++)
         {
             for (int c = 0; c < 32; c++)
@@ -164,7 +179,6 @@ public class GameBoard : MonoBehaviour
             }
         }
     }
-
     public void extractTiles(Vector2 vec)
 	{
         if (extractNumbers > 0)

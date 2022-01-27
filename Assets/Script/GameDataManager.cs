@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameDataManager : MonoBehaviour
 {
     public GameObject EnterGameButton;
+    public GameObject ShowButton;
     public GameObject GamePanel;
     public GameObject GameMode;
     public Text GameStatsText;
@@ -15,6 +16,8 @@ public class GameDataManager : MonoBehaviour
     {
         EnterGameButton.GetComponent<Button>().onClick.AddListener(OnEnterGameButton);
         GameMode.GetComponent<Button>().onClick.AddListener(OnGameModeClicked);
+        ShowButton.GetComponent<Button>().onClick.AddListener(OnShowGameBoardButtonClicked);
+
         GameModeText = GameMode.GetComponentInChildren<Text>();
     }
 
@@ -31,7 +34,7 @@ public class GameDataManager : MonoBehaviour
 
     public void OnGameModeClicked()
 	{
-            GameBoard.Instance.ChangeMode();
+            GameBoard.Instance.ChangeMode(false);
         if(GameBoard.Instance.GameMode == GAME_MODE.EXTRACT_MODE)
 		{
             if (GameBoard.Instance.ScanNumbrs > 0)
@@ -55,6 +58,11 @@ public class GameDataManager : MonoBehaviour
             GameModeText.text = "Scan Mode";
         }
 	}
+
+    public void OnShowGameBoardButtonClicked()
+	{
+      StartCoroutine(  GameBoard.Instance.showGameBoard());
+    }
 
     private void updateTextUI()
 	{
