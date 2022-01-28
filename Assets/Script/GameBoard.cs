@@ -1,31 +1,45 @@
+// There's a Reveal Game Board in the game to see the whole board for two seconds
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+// singleton class
 public class GameBoard : MonoBehaviour
 {
     private static GameBoard instance;
     public static GameBoard Instance { get { return instance; } }
+
     private System.Random rand = new System.Random();
+    // Game Obejct refernces
     public GameObject TilePrefab;
     public Text MessageText;
-
+    // 2D array that is filled with tiles
     public GameObject[,] grid = new GameObject[32, 32];
+    // list of tiles' coordinates that has resources
     public List<Vector2> filledTileList = new List<Vector2>();
 
+    
     public Color MaxColor;
     public Color HalfColor;
     public Color QuarterColor;
     public Color defaultColor;
 
+    // Maximum amount for resources is 200
     public int MaxResourceAmount;
+    // the number of max that are placed randomly in the grid
     public int numberOfMaxResources;
 
+    // Extract mode or scan mode
     public GAME_MODE GameMode;
+
+    //Number of clicks per in scan mode
     public int scanModeClickNumbers;
     public int MaxScanClickNumbers;
+   
     public int extractNumbers;
     public int ScanNumbrs = 6;
+
     public int[] resourcesAmount=new int[12];
     public string[] resourceNames = new string[12];
     private void Awake()
@@ -39,6 +53,8 @@ public class GameBoard : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    //generating grid 
     void Start()
     {
         GameMode = GAME_MODE.EXTRACT_MODE;
@@ -54,6 +70,7 @@ public class GameBoard : MonoBehaviour
         SetupTiles();
     }
 
+    //generating random tiles with max amount and 2 rings of tile around it
 	private void SetupTiles()
 	{
         Vector2 vec = Vector2.zero;
@@ -93,7 +110,8 @@ public class GameBoard : MonoBehaviour
             }
         }
 	}
-
+    //generating random coordinates for maximum tile and check if it and 2 rings 
+    //around it have already been filled. 
     private Vector2 FindAvailableTile(Vector2 vec)
 	{
         int r =0, c=0;
@@ -125,7 +143,7 @@ public class GameBoard : MonoBehaviour
           return new Vector2(r, c);
       
     }
-
+    // Showing clicked tile and its 8 neighbour tiles in scan mode
     public void ShowTilesScanMode(Vector2 vec)
 	{
        
@@ -149,7 +167,7 @@ public class GameBoard : MonoBehaviour
 
         }
     }
-
+    // Hiding tiles when the mode changes
     public void ChangeMode(bool show)
 	{
         for (int r = 0; r < 32; r++)
@@ -160,7 +178,7 @@ public class GameBoard : MonoBehaviour
             }
         }
     }
-
+    // shows all the board for two second
     public IEnumerator showGameBoard()
     {
         for (int r = 0; r < 32; r++)
@@ -179,6 +197,7 @@ public class GameBoard : MonoBehaviour
             }
         }
     }
+    // extract resources from clicked tiles and its 2 ring neighbours
     public void extractTiles(Vector2 vec)
 	{
         if (extractNumbers > 0)
