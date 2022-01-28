@@ -29,7 +29,7 @@ public class GameDataManager : MonoBehaviour
 
     public void OnEnterGameButton()
 	{
-        GamePanel.SetActive(true);
+        GamePanel.SetActive(false);
 	}
 
     public void OnGameModeClicked()
@@ -44,7 +44,7 @@ public class GameDataManager : MonoBehaviour
                 GameBoard.Instance.GameMode = GAME_MODE.SCAN_MODE;
                 GameModeText.text = "Extract Mode";
                 GameBoard.Instance.ScanNumbrs--;
-
+                GameBoard.Instance.scanModeClickNumbers = GameBoard.Instance.MaxScanClickNumbers;
             }
             else
 			{

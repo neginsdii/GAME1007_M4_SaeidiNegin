@@ -186,51 +186,62 @@ public class GameBoard : MonoBehaviour
             extractNumbers--;
             int r = (int)vec.x;
             int c = (int)vec.y;
-            for (int i = r - 2; i < r + 2; i++)
+            for (int i = r - 2; i < r + 3; i++)
             {
-                for (int j = c - 2; j < c + 2; j++)
+                for (int j = c - 2; j < c + 3; j++)
                 {
                     if ((j <= 31 && j >= 0) && (i <= 31 && i >= 0))
                     {
+                        if(i== r && j==c)
+						{
+                            resourcesAmount[(int)grid[i, j].GetComponent<TileScript>().resource] += grid[i, j].GetComponent<TileScript>().amount;
+                            if (grid[i, j].GetComponent<TileScript>().isFilled)
+                            {
+                                GameBoard.Instance.MessageText.text = "Extracted " + grid[i, j].GetComponent<TileScript>().amount + " " + resourceNames[(int)grid[i, j].GetComponent<TileScript>().resource];
 
-                        if (grid[i, j].GetComponent<TileScript>().amount == MaxResourceAmount)
+                                grid[i, j].GetComponent<TileScript>().fillTile(defaultColor, -1, 0);
+
+                            }
+                            else
+							{
+                                GameBoard.Instance.MessageText.text = "Extracted empty tile" ;
+
+                            }
+
+                        }
+                       else if (grid[i, j].GetComponent<TileScript>().amount == MaxResourceAmount)
                         {
                             resourcesAmount[(int)grid[i, j].GetComponent<TileScript>().resource] += MaxResourceAmount / 2;
                             grid[i, j].GetComponent<TileScript>().fillTile(HalfColor, (int)grid[i, j].GetComponent<TileScript>().resource, MaxResourceAmount / 2);
-                            GameBoard.Instance.MessageText.text = "Extracted " + MaxResourceAmount / 2 + " " + resourceNames[(int)grid[i, j].GetComponent<TileScript>().resource];
 
                         }
                         else if (grid[i, j].GetComponent<TileScript>().amount == MaxResourceAmount / 2)
                         {
                             grid[i, j].GetComponent<TileScript>().fillTile(QuarterColor, (int)grid[i, j].GetComponent<TileScript>().resource, MaxResourceAmount / 4);
                             resourcesAmount[(int)grid[i, j].GetComponent<TileScript>().resource] += MaxResourceAmount / 4;
-                            GameBoard.Instance.MessageText.text = "Extracted " + MaxResourceAmount / 4 + " " + resourceNames[(int)grid[i, j].GetComponent<TileScript>().resource];
 
                         }
                         else if (grid[i, j].GetComponent<TileScript>().amount == MaxResourceAmount / 4)
                         {
                             resourcesAmount[(int)grid[i, j].GetComponent<TileScript>().resource] += MaxResourceAmount / 4;
                             grid[i, j].GetComponent<TileScript>().fillTile(defaultColor, -1, 0);
-                            GameBoard.Instance.MessageText.text = "Extracted " + MaxResourceAmount / 4 + " " + resourceNames[(int)grid[i, j].GetComponent<TileScript>().resource];
                         }
                         else
                         {
                             grid[i, j].GetComponent<TileScript>().fillTile(defaultColor, -1, 0);
-                            GameBoard.Instance.MessageText.text = "Extracted empty tile";
+
+                          
                         }
 
                     }
 
                 }
             }
-            for (int i = r - 2; i < r + 2; i++)
-            {
-                for (int j = c - 2; j < c + 2; j++)
-                {
-                    if ((j <= 31 && j >= 0) && (i <= 31 && i >= 0))
-                        grid[i, j].GetComponent<TileScript>().ToggleTileActivation(true);
-                }
-            }
+         
+
+            
+            grid[r, c].GetComponent<TileScript>().ToggleTileActivation(true);
+           
         }
         else
 		{

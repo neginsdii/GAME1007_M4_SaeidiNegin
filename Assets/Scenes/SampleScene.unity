@@ -160,7 +160,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 179.9, y: 58.25}
+  m_SizeDelta: {x: 274.5, y: 90.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &84077060
 MonoBehaviour:
@@ -572,8 +572,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 689575835}
   - {fileID: 531209350}
+  - {fileID: 689575835}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnterGameButton: {fileID: 84077058}
   ShowButton: {fileID: 2000766839}
-  GamePanel: {fileID: 531209347}
+  GamePanel: {fileID: 689575834}
   GameMode: {fileID: 1009253581}
   GameStatsText: {fileID: 205647592}
   ResourceCounterText: {fileID: 235260319}
@@ -704,7 +704,7 @@ RectTransform:
   - {fileID: 1466793604}
   - {fileID: 1820882791}
   m_Father: {fileID: 390106127}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -742,7 +742,7 @@ RectTransform:
   m_Children:
   - {fileID: 84077059}
   m_Father: {fileID: 390106127}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1282,12 +1282,12 @@ MonoBehaviour:
   MaxColor: {r: 0.735849, g: 0.0064692944, b: 0, a: 0.80784315}
   HalfColor: {r: 1, g: 0.3891403, b: 0, a: 0.7882353}
   QuarterColor: {r: 1, g: 0.7337315, b: 0, a: 0.54901963}
-  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  defaultColor: {r: 0.85490197, g: 0.7607843, b: 0.7607843, a: 1}
   MaxResourceAmount: 200
   numberOfMaxResources: 17
   GameMode: 0
   scanModeClickNumbers: 6
-  MaxScanClickNumbers: 0
+  MaxScanClickNumbers: 6
   extractNumbers: 4
   ScanNumbrs: 6
   resourcesAmount: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -1520,10 +1520,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 24
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
