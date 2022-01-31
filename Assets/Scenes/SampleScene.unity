@@ -159,8 +159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 274.5, y: 90.8}
+  m_AnchoredPosition: {x: 0, y: 3.219}
+  m_SizeDelta: {x: 274.5, y: 97.238}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &84077060
 MonoBehaviour:
@@ -1288,7 +1288,7 @@ MonoBehaviour:
   GameMode: 0
   scanModeClickNumbers: 6
   MaxScanClickNumbers: 6
-  extractNumbers: 4
+  extractNumbers: 3
   ScanNumbrs: 6
   resourcesAmount: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   resourceNames:
@@ -1341,7 +1341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 198.3, y: 469.6}
+  m_AnchoredPosition: {x: 198.2998, y: 469.6}
   m_SizeDelta: {x: 400, y: 327}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1466793605
@@ -1642,7 +1642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 198.3, y: -140.7}
+  m_AnchoredPosition: {x: 198.2998, y: -140.7}
   m_SizeDelta: {x: 400, y: 630.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1820882792
@@ -1873,7 +1873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 201.3, y: 237.05}
+  m_AnchoredPosition: {x: 201.2998, y: 237.05}
   m_SizeDelta: {x: 180, y: 80}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2000766841
