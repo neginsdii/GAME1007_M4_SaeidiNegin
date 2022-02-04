@@ -9,7 +9,8 @@ public class GameDataManager : MonoBehaviour
     public GameObject GamePanel;
     public GameObject GameMode;
     public Text GameStatsText;
-  
+    public GameObject ExitButton;
+    public GameObject exitPanel;
     public Text ResourceCounterText;
     private Text GameModeText;
     void Start()
@@ -17,7 +18,7 @@ public class GameDataManager : MonoBehaviour
         EnterGameButton.GetComponent<Button>().onClick.AddListener(OnEnterGameButton);
         GameMode.GetComponent<Button>().onClick.AddListener(OnGameModeClicked);
         ShowButton.GetComponent<Button>().onClick.AddListener(OnShowGameBoardButtonClicked);
-
+        ExitButton.GetComponent<Button>().onClick.AddListener(OnExitButtonClicked);
         GameModeText = GameMode.GetComponentInChildren<Text>();
     }
 
@@ -25,12 +26,18 @@ public class GameDataManager : MonoBehaviour
     void Update()
     {
         updateTextUI();
+        if (GameBoard.Instance.extractNumbers <= 0)
+        {
+            exitPanel.SetActive(true);
+        }
     }
 
     public void OnEnterGameButton()
 	{
         GamePanel.SetActive(false);
-	}
+       
+
+    }
 
     public void OnGameModeClicked()
 	{
@@ -43,8 +50,7 @@ public class GameDataManager : MonoBehaviour
                 GameBoard.Instance.MessageText.text = "You're in scan mode";
                 GameBoard.Instance.GameMode = GAME_MODE.SCAN_MODE;
                 GameModeText.text = "Extract Mode";
-                GameBoard.Instance.ScanNumbrs--;
-                GameBoard.Instance.scanModeClickNumbers = GameBoard.Instance.MaxScanClickNumbers;
+
             }
             else
 			{
@@ -63,11 +69,14 @@ public class GameDataManager : MonoBehaviour
 	{
       StartCoroutine(  GameBoard.Instance.showGameBoard());
     }
-
+    public void OnExitButtonClicked()
+	{
+        GamePanel.SetActive(true);
+        Debug.Log("exit");
+	}
     private void updateTextUI()
 	{
-        GameStatsText.text = "Extract Numbers: " + GameBoard.Instance.extractNumbers + "\n Scan Numbers: " + GameBoard.Instance.ScanNumbrs +
-                        "\n Scan Mode Click Numbers: " + GameBoard.Instance.scanModeClickNumbers;
+        GameStatsText.text = "Extract Numbers: " + GameBoard.Instance.extractNumbers + "\n Scan Numbers: "+ GameBoard.Instance.scanModeClickNumbers;
         ResourceCounterText.text = "";
         for (int i = 0; i < 12; i++)
         {

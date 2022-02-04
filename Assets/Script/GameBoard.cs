@@ -257,18 +257,18 @@ public class GameBoard : MonoBehaviour
                 }
             }
 
-            for (int i = r - 2; i < r + 3; i++)
-            {
-                for (int j = c - 2; j < c + 3; j++)
-                {
-                    if ((j <= 31 && j >= 0) && (i <= 31 && i >= 0))
-                        grid[i, j].GetComponent<TileScript>().ToggleTileActivation(true);
-                }
-            }
+			for (int i = r - 1; i < r + 2; i++)
+			{
+				for (int j = c - 1; j < c + 2; j++)
+				{
+					if ((j <= 31 && j >= 0) && (i <= 31 && i >= 0))
+						grid[i, j].GetComponent<TileScript>().ToggleTileActivation(true);
+				}
+			}
 
-         //   grid[r, c].GetComponent<TileScript>().ToggleTileActivation(true);
-           
-        }
+			//  grid[r, c].GetComponent<TileScript>().ToggleTileActivation(true);
+
+		}
         else
 		{
             GameBoard.Instance.MessageText.text = "Number of extraction is 0";
